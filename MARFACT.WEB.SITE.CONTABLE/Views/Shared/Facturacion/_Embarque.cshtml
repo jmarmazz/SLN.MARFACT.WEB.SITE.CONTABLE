@@ -1,0 +1,111 @@
+﻿@model MARFACT.WEB.SITE.CONTABLE.Models.Facturacion.FacturaModel
+@{
+    ViewData["Title"] = "Embarque";
+}
+
+<div class="col-md-12" id="partialEmbarque">
+    <div class="row margin-laptop">
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Fecha Embarque:</label>
+            <input id="txtFechaEmbarque" type="text" asp-for="@Model.Encabezado.InformacionesAdicionales.FechaEmbarque" class="form-control input-sm datepicker" placeholder="dd-mm-aaaa" onkeydown="event.preventDefault()" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Número Embarque:</label>
+            <input id="txtNumeroEmbarque" asp-for="@Model.Encabezado.InformacionesAdicionales.NumeroEmbarque" type="text" class="form-control input-sm" maxlength="25" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Número Contenedor:</label>
+            <input id="txtNumeroContenedor" asp-for="@Model.Encabezado.InformacionesAdicionales.NumeroContenedor" type="text" class="form-control input-sm" maxlength="25" />
+        </div>
+    </div>
+    <div class="row margin-laptop">
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Número Referencia:</label>
+            <input id="txtNumeroReferencia" asp-for="@Model.Encabezado.InformacionesAdicionales.NumeroReferencia" type="number" class="form-control input-sm" onKeyPress="if(this.value.length==20) return false;" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Nombre Puerto Embarque:</label>
+            <input id="txtNombrePuertoEmbarque" asp-for="@Model.Encabezado.InformacionesAdicionales.NombrePuertoEmbarque" type="text" class="form-control input-sm" maxlength="40" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Condiciones Entrega:</label>
+            <input id="txtCondicionesEntrega" asp-for="@Model.Encabezado.InformacionesAdicionales.CondicionesEntrega" type="text" class="form-control input-sm" placeholder="CIF, FOB..." style="text-transform:uppercase" maxlength="3" />
+        </div>
+    </div>
+    <div class="row margin-laptop">
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Total Fob:</label>
+            <input id="txtTotalFob" asp-for="@Model.Encabezado.InformacionesAdicionales.TotalFob" type="text" class="form-control input-sm isdecimal2" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Seguro:</label>
+            <input id="txtSeguro" asp-for="@Model.Encabezado.InformacionesAdicionales.Seguro" type="text" class="form-control input-sm isdecimal2" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Flete:</label>
+            <input id="txtFlete" asp-for="@Model.Encabezado.InformacionesAdicionales.Flete" type="text" class="form-control input-sm isdecimal2" />
+        </div>
+    </div>
+    <div class="row margin-laptop">
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Otros Gastos:</label>
+            <input id="txtOtrosGastos" asp-for="@Model.Encabezado.InformacionesAdicionales.OtrosGastos" type="text" class="form-control input-sm isdecimal2" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Total Cif:</label>
+            <input id="txtTotalCif" asp-for="@Model.Encabezado.InformacionesAdicionales.TotalCif" type="text" class="form-control input-sm isdecimal2" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Regimen Aduanero:</label>
+            <input id="txtRegimenAduanero" asp-for="@Model.Encabezado.InformacionesAdicionales.RegimenAduanero" type="text" class="form-control input-sm" maxlength="35" />
+        </div>
+    </div>
+    <div class="row margin-laptop">
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Nombre Puerto Salida:</label>
+            <input id="txtNombrePuertoSalida" asp-for="@Model.Encabezado.InformacionesAdicionales.NombrePuertoSalida" type="text" class="form-control input-sm" maxlength="40" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Nombre Puerto Desembarque:</label>
+            <input id="txtNombrePuertoDesembarque" asp-for="@Model.Encabezado.InformacionesAdicionales.NombrePuertoDesembarque" type="text" class="form-control input-sm" maxlength="40" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Peso Bruto:</label>
+            <input id="txtPesoBruto" asp-for="@Model.Encabezado.InformacionesAdicionales.PesoBruto" type="text" class="form-control input-sm isdecimal2" />
+        </div>
+    </div>
+    <div class="row margin-laptop">
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Peso Neto:</label>
+            <input id="txtPesoNeto" asp-for="@Model.Encabezado.InformacionesAdicionales.PesoNeto" type="text" class="form-control input-sm isdecimal2" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Unidad Peso Bruto:</label>
+            @Html.DropDownListFor(Model => Model.Encabezado.InformacionesAdicionales.UnidadPesoBruto, new SelectList(ViewBag.ListUnidadesMedida, "Key", "Value"), "", new { @id = "cboUnidadPesoBruto", @class = "form-control select2bs4", @style = "width:100%", data_placeholder = "Seleccione..." })
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Unidad Peso Neto:</label>
+            @Html.DropDownListFor(Model => Model.Encabezado.InformacionesAdicionales.UnidadPesoNeto, new SelectList(ViewBag.ListUnidadesMedida, "Key", "Value"), "", new { @id = "cboUnidadPesoNeto", @class = "form-control select2bs4", @style = "width:100%", data_placeholder = "Seleccione..." })
+        </div>
+    </div>
+    <div class="row margin-laptop">
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Cantidad Bulto:</label>
+            <input id="txtCantidadBulto" asp-for="@Model.Encabezado.InformacionesAdicionales.CantidadBulto" type="text" class="form-control input-sm isdecimal2" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Unidad Bulto:</label>
+            @Html.DropDownListFor(Model => Model.Encabezado.InformacionesAdicionales.UnidadBulto, new SelectList(ViewBag.ListUnidadesMedida, "Key", "Value"), "", new { @id = "cboUnidadBulto", @class = "form-control select2", @style = "width:100%", data_placeholder = "Seleccione..." })
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Volumen Bulto:</label>
+            <input id="txtVolumenBulto" asp-for="@Model.Encabezado.InformacionesAdicionales.VolumenBulto" type="text" class="form-control input-sm isdecimal2" />
+        </div>
+    </div>
+    <div class="row margin-laptop">
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Unidad Volumen:</label>
+            @Html.DropDownListFor(Model => Model.Encabezado.InformacionesAdicionales.UnidadVolumen, new SelectList(ViewBag.ListUnidadesMedida, "Key", "Value"), "", new { @id = "cboUnidadVolumen", @class = "form-control select2bs4", @style = "width:100%", data_placeholder = "Seleccione..." })
+        </div>
+    </div>
+</div>

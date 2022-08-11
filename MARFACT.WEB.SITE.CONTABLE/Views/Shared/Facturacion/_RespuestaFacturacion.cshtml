@@ -1,0 +1,36 @@
+﻿<div class="modal fade" id="modal_RespuestaEmision" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h5 class="modal-title" id="tituloMant">
+                    <i class="glyphicon "></i> Respuesta Emisión
+                </h5>
+            </div>
+            <form class="form-horizontal" style="font-size:14px">
+                <input id="rncEmisor" type="hidden" value="" />
+                <div class="modal-body with-padding">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="margin: 5px 0px;" id="divRespuestaEmision" class="@Html.Raw(TempData["cssEstado"])">
+                                <p><strong>Estado de Emisión: </strong>@Html.Raw(TempData["EstadoEmisionEDOC"])<span id="etiEstadoEmisionEDOC"></span></p>
+                                <p><strong>Fecha de Autorización: </strong>@Html.Raw(TempData["FechaAutorizacion"])<span id="etiFechaAutorizacion"></span></p>
+                                <p><strong>Url Consulta QR: </strong><small><a id="linkUrlConsultaQR" href="@TempData["UrlConsultaQR"]" target="_blank">@Html.Raw(TempData["UrlConsultaQR"])</a></small></p>
+                                <p><strong>Mensaje de Respuesta: </strong> @Html.Raw(TempData["MensajeRespuesta"])<span id="etiMensajeRespuesta"></span></p>
+                                <p class="text-center">
+                                    <input id="btnEmisionPDF" type="image" class="name" src="./images/pdf.png" width="35" />
+                                    <input id="btnEmisionXML" type="image" class="name" src="./images/xml.png" width="33" style="margin-left:50px"/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top:0px !important">
+                    <button id="btnCerrarRespEmision" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

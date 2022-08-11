@@ -1,0 +1,80 @@
+﻿@model MARFACT.WEB.SITE.CONTABLE.Models.Facturacion.FacturaModel
+@using MARFACT.DOMAIN.Constants
+@using MF.TOOLS
+
+@{
+    ViewData["Title"] = "Transporte";
+}
+
+<div class="col-md-12" id="partialTransporte">
+    <div class="row margin-laptop">
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Via Transporte:</label>
+            <select id="cboViaTransporte" asp-for="@Model.Encabezado.Transporte.ViaTransporte" class="form-control select2bs4-nosearch" style="width:100%" data-placeholder="Seleccione...">
+                <option value=""></option>
+               
+            </select>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Pais Origen:</label>
+            <input id="txtPaisOrigen" asp-for="@Model.Encabezado.Transporte.PaisOrigen" type="text" class="form-control input-sm" maxlength="60" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Direccion Destino:</label>
+            <input id="txtDireccionDestino" asp-for="@Model.Encabezado.Transporte.DireccionDestino" type="text" class="form-control input-sm" maxlength="100" />
+        </div>
+    </div>
+    <div class="row margin-laptop">
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Pais Destino:</label>
+            <input id="txtPaisDestino" asp-for="@Model.Encabezado.Transporte.PaisDestino" type="text" class="form-control input-sm" maxlength="60" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">RNC Cía. Transportista:</label>
+            <input id="txtRNCIdentificacionCompaniaTransportista" asp-for="@Model.Encabezado.Transporte.RNCIdentificacionCompaniaTransportista" type="text" class="form-control input-sm" maxlength="20" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Nombre Cía. Transportista:</label>
+            <input id="txtNombreCompaniaTransportista" asp-for="@Model.Encabezado.Transporte.NombreCompaniaTransportista" type="text" class="form-control input-sm" maxlength="150" />
+        </div>
+    </div>
+    <div class="row margin-laptop">
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Número Viaje:</label>
+            <input id="txtNumeroViaje" asp-for="@Model.Encabezado.Transporte.NumeroViaje" type="text" class="form-control input-sm" maxlength="20" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Conductor:</label>
+            <input id="txtConductor" asp-for="@Model.Encabezado.Transporte.Conductor" type="text" class="form-control input-sm" maxlength="20" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Documento Transporte:</label>
+            <input id="txtDocumentoTransporte" asp-for="@Model.Encabezado.Transporte.DocumentoTransporte" type="number" class="form-control input-sm" maxlength="20" onKeyPress="if(this.value.length==20) return false;" />
+        </div>
+    </div>
+    <div class="row margin-laptop">
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Ficha:</label>
+            <input id="txtFicha" asp-for="@Model.Encabezado.Transporte.Ficha" type="text" class="form-control input-sm" maxlength="10" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Placa:</label>
+            <input id="txtPlaca" asp-for="@Model.Encabezado.Transporte.Placa" type="text" class="form-control input-sm" maxlength="7" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Ruta Transporte:</label>
+            <input id="txtRutaTransporte" asp-for="@Model.Encabezado.Transporte.RutaTransporte" type="text" class="form-control input-sm" maxlength="20" />
+        </div>
+    </div>
+
+    <div class="row margin-laptop">
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Zona Transporte:</label>
+            <input id="txtZonaTransporte" asp-for="@Model.Encabezado.Transporte.ZonaTransporte" type="text" class="form-control input-sm" maxlength="20" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <label class="form-label">Número Albaran:</label>
+            <input id="txtNumeroAlbaran" asp-for="@Model.Encabezado.Transporte.NumeroAlbaran" type="text" class="form-control input-sm" maxlength="20" />
+        </div>
+    </div>
+</div>

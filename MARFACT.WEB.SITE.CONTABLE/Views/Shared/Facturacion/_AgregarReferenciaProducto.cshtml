@@ -1,0 +1,111 @@
+﻿
+<div class="modal fade" id="modal_ReferenciaProducto" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-md" role="document" style="margin-top: 90px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h5 class="modal-title" id="tituloMant">
+                    <i class="glyphicon "></i>  Cantidad/Unidad de Referencia
+                </h5>
+            </div>
+            <form autocomplete="off" role="form">
+                <div class="modal-body with-padding">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="col-md-6 col-sm-6">
+                                <label class="form-label">Cantidad Referencia:<span class="mandatory">*</span></label>
+                                <input id="txtCantidadReferencia" type="text" class="form-control input-sm isdecimal2" />
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <label class="form-label">Precio Referencia:<span class="mandatory">*</span></label>
+                                <input id="txtPrecioUnitarioReferencia" type="text" class="form-control input-sm isdecimal2" />
+                            </div>
+                            <div class="col-md-6 col-sm-6 margin-laptop">
+                                <label class="form-label">Unidad Referencia:<span class="mandatory">*</span></label>
+                                <select id="cboUnidadMedidaReferencia" class="form-control input-sm select2bs4" data-placeholder="Seleccione..." style="width:100%;" >
+                                    @if (ViewBag.ListUnidadesMedida != null)
+                                    {
+                                        foreach (KeyValuePair<string, string> i in ViewBag.ListUnidadesMedida)
+                                        {
+                                            <option data-tokens="@i.Value.ToLower()" value="@i.Key">@i.Value.ToUpper()</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-sm-6 margin-laptop">
+                                <label class="form-label">Grados Alcohol:</label>
+                                <input id="txtGradosAlcohol" type="text" class="form-control input-sm isdecimal2" />
+                                <small id="passwordHelpBlock" class="form-text text-muted">Obligatorio para impuestos adicionales 006 hasta 018</small>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-12">
+                            <div class="panel panel-default" style="margin-bottom:0px !important">
+                                <div class="panel-heading">
+                                    <div>
+                                        <h6 class="panel-title">
+                                            <i class="glyphicon glyphicon-edit"></i> Subcantidad
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div class="panel-body" style="padding: 0px 10px;">
+                                    <div class="row margin-laptop">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="col-md-4 col-sm-4">
+                                                <label class="form-label">Subcantidad:</label>
+                                                <input id="txtSubcantidad" type="text" class="form-control input-sm isdecimal2" />
+                                            </div>
+                                            <div class="col-md-5 col-sm-5">
+                                                <label class="form-label">Unidad Medida:</label>
+                                                <select id="cboUnidadSubcantidad" class="form-control input-sm select2bs4" data-placeholder="Seleccione..." style="width:100%;" >
+                                                    @if (ViewBag.ListUnidadesMedida != null)
+                                                    {
+                                                        foreach (KeyValuePair<string, string> i in ViewBag.ListUnidadesMedida)
+                                                        {
+                                                            <option data-tokens="@i.Value.ToLower()" value="@i.Key">@i.Value.ToUpper()</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+                                                <button id="btnAgregarSubcantidad" type="button" style="margin-top: 15px;" class="btn btn-primary btn-emisor">
+                                                    <span class="glyphicon glyphicon-plus"></span> Agregar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table id="tblSubCantidad" class="table table-striped table-bordered table-sm table-responsive" cellspacing="0" cellpadding="0" width="100%">
+                                                    <thead class="label-primary">
+                                                        <tr>
+                                                            <th></th>
+                                                            <th class="col-md-3 text-center">Subcantidad</th>
+                                                            <th class="col-md-5 text-center">Unidad Medida</th>
+                                                            <th class="col-md-1 text-center"></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top:0px !important">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnAgregarReferenciaProducto">Aceptar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

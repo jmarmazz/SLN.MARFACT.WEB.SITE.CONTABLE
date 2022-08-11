@@ -1,0 +1,202 @@
+﻿@model MARFACT.WEB.SITE.CONTABLE.Models.Facturacion.FacturaModel
+@using MARFACT.DOMAIN.Constants
+@using MF.TOOLS
+
+@{
+    ViewData["Title"] = "Factura";
+    Layout = "~/Views/Shared/_Master.cshtml";
+    ViewData["formCancelar"] = "formCancelarFacturacion";
+}
+
+@section styles{
+    <link href="~/css/pages/Facturacion.css" asp-append-version="true" rel="stylesheet" />   
+}
+
+<div class="container-fluid">
+    <div class="row"> 
+        @*<form id="formFacturacionComprobante" data-ajax="true" data-ajax-method="post" asp-controller="FacturaCreditoFiscal" asp-action="Index"
+              data-ajax-success="onSuccess" data-ajax-failure="OnFailure" autocomplete="off">*@
+        <input id="hidRNCComprador" type="hidden" asp-for="@Model.Encabezado.Comprador.RNCComprador" value="@Model.Encabezado?.Comprador?.RNCComprador" />
+        @*<input id="hidEstadoFacturacion" type="hidden" asp-for="@Model.EstadoFacturacion" value="@Model.EstadoFacturacion" />*@
+
+        <div class="col-md-5 " style="padding-right: 0px !important;"> 
+            <div class="card card-info">
+                <div class="card-header">
+                    <h6 class="card-title">
+                        <i class="glyphicon glyphicon-edit"></i> @ViewData["Title"]
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="pull-left">
+                                <label class="form-label">Secuencia:<span class="mandatory">*</span></label>
+                            </div>
+                            <input id="txtNumDocumento" asp-for="@Model.Encabezado.IdDoc.ENCF" class="form-control input-sm" readonly value="@Model.Encabezado.IdDoc.ENCF" required />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Fecha:</label>
+                            <input id="txtFechaFacturacion" type="text" asp-for="@Model.Encabezado.Emisor.FechaEmision" class="form-control input-sm datepicker" placeholder="dd-mm-aaaa" onkeydown="event.preventDefault()" value="@Model.Encabezado.Emisor.FechaEmision.ToString("dd-MM-yyyy")" />
+                        </div> 
+                    </div>
+                    <div class="row margin-laptop">
+                        <div class="col-md-6 col-sm-6">
+                            <label class="form-label">Cliente:<span class="mandatory">*</span></label>
+                            @*@Html.DropDownListFor(Model => Model.IdCliente, new SelectList(Model.ListCientes, "Key", "Value"), "", new { @id = "cboCliente", @class = "form-control select2 select2-single", @style = "width:100%", @required = "required", data_placeholder = "Seleccione..." })*@
+                            <select id="cboCliente" asp-for="@Model.IdCliente" class="form-control select2bs4 select2-single" style="width:100%" data-placeholder="Seleccione..." required>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label class="form-label">Razón Social:<span class="mandatory">*</span></label>
+                            <input id="txtRazonSocialComprador" asp-for="@Model.Encabezado.Comprador.RazonSocialComprador" type="text" class="form-control input-sm" readonly />
+                        </div>
+                    </div>
+                    <div class="row margin-laptop">
+                        <div class="col-md-6 col-sm-6">
+                            <label class="form-label">Email:</label>
+                            <input id="txtCorreoComprador" asp-for="@Model.Encabezado.Comprador.CorreoComprador" type="text" class="form-control input-sm" />
+                        </div>
+                         <div class="col-md-6 col-sm-6">
+                            <label class="form-label">Dirección Cliente:</label>
+                            <input id="txtDireccionComprador" asp-for="@Model.Encabezado.Comprador.DireccionComprador" type="text" class="form-control input-sm" />
+                        </div>
+                    </div>
+                    <div class="row margin-laptop">
+                        <div class="col-12">
+                            <div class="card card-info card-tabs">
+                                <div class="card-header p-0 pt-1">
+                                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="#tabEmi2" data-toggle="tab">Pago</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#tabEmi5" data-toggle="tab">Dscto / Recargo</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content"> 
+                                        <div class="tab-pane fade show active" id="tabEmi2" role="tabpanel" >
+                                            @{ await Html.RenderPartialAsync("../Shared/Facturacion/_FormaPago", Model); }
+                                        </div>
+                                        <div class="tab-pane fade" id="tabEmi5" role="tabpanel" >
+                                            @{ await Html.RenderPartialAsync("../Shared/Facturacion/_DescuentoRecargoGlobal"); }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div> 
+            </div>
+        </div>
+        <div class="col-md-7" id="partialProducto">
+            @{ await Html.RenderPartialAsync("../Shared/Facturacion/_Producto"); }
+
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="container-fluid"> 
+                            <div class="row justify-content-md-end margin-laptop">
+                                <div class="col-md-3 col-md-offset-6" style="text-align: end">
+                                    <span><strong>Descuento:</strong></span>
+                                </div>
+                                <div class="col-md-2 col-md-offset-0" style="text-align: end">
+                                    <span><strong id="lblDescuentoTotal">0.00 </strong></span>
+                                </div>
+                            </div>
+                            <div class="row justify-content-md-end margin-laptop">
+                                <div class="col-md-3 col-md-offset-6" style="text-align: end">
+                                    <span><strong>Recargo:</strong></span>
+                                </div>
+                                <div class="col-md-2 col-md-offset-0" style="text-align: end">
+                                    <span><strong id="lblRecargoTotal">0.00 </strong></span>
+                                </div>
+                            </div> 
+                            <div class="row justify-content-end margin-laptop">
+                                <div class="col-md-3 col-md-offset-6" style="text-align: end">
+                                    <span><strong>Monto Gravado:</strong></span>
+                                </div>
+                                <div class="col-md-2 col-md-offset-0" style="text-align: end">
+                                    <span><strong id="lblMontoGravado">0.00 </strong></span>
+                                </div>
+                            </div>
+                            <div class="row justify-content-end margin-laptop">
+                                <div class="col-md-3 col-md-offset-6" style="text-align: end">
+                                    <span><strong>Subtotal:</strong></span>
+                                </div>
+                                <div class="col-md-2 col-md-offset-0" style="text-align: end">
+                                    <span><strong id="lblSubTotal">0.00 </strong></span>
+                                </div>
+                            </div>
+                            <div class="row justify-content-md-end margin-laptop">
+                                <div class="col-md-3 col-md-offset-6" style="text-align: end">
+                                    <span><strong>IVA:</strong></span>
+                                </div>
+                                <div class="col-md-2 col-md-offset-0" style="text-align: end">
+                                    <span><strong id="lblTotalIVA">0.00 </strong></span>
+                                </div>
+                            </div>
+                            <div class="row justify-content-md-end margin-laptop">
+                                <div class="col-md-3 col-md-offset-6" style="text-align: end">
+                                    <span><strong>Total:</strong></span>
+                                </div>
+                                <div class="col-md-2 col-md-offset-0" style="text-align: end">
+                                    <span><strong id="lblMontoTotal">0.00 </strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" id="partialAgregarDsctoRecargo">
+            @{ await Html.RenderPartialAsync("../Shared/Facturacion/_AgregarDescuentoRecargoGlobal"); }
+        </div>
+        <div class="col-md-12" id="partialAgregarDsctoRecargoLineal">
+            @{ await Html.RenderPartialAsync("../Shared/Facturacion/_AgregarDescuentoRecargoLineal"); }
+        </div> 
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <button type="button" onclick="ConfirmacionCancelar('@ViewData["formCancelar"]')" class="btn btn-secondary" >Cancelar</button>
+            <button type="button" id="btnSubmit" onclick="return ValidarFormulario()" class="btn btn-success"><i class="glyphicon glyphicon-check"></i> Grabar</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-12" id="partialAgregarProducto">
+    @{ await Html.RenderPartialAsync("../Shared/Facturacion/_AgregarProducto"); }
+</div>
+<div class="col-md-12" id="partialAgregarAdicional">
+    @{ await Html.RenderPartialAsync("../Shared/Facturacion/_AgregarAdicional"); }
+</div>
+<div class="col-md-12" id="partialAgregarFormaPago">
+    @{ await Html.RenderPartialAsync("../Shared/Facturacion/_AgregarFormaPago"); }
+</div>
+@{ await Html.RenderPartialAsync("../Shared/Facturacion/_RespuestaFacturacion"); }
+@*<partial name="../Shared/_MostrarPdf" />*@
+
+<form id="@ViewData["formCancelar"]" asp-action="Index" autocomplete="off" method="get">
+</form>
+ 
+
+
+@section Scripts { 
+    
+    <script src="~/js/pages/Facturacion.js" asp-append-version="true"></script>
+    <script src="~/js/pages/Factura.js" asp-append-version="true"></script>
+
+    <script>
+
+    var count_productos = @(Model.DetallesItems == null ? 0 : Model?.DetallesItems.Count());
+    var count_adicional = @(Model.CamposAdicionales == null ? 0 : Model?.CamposAdicionales.Count());
+    var count_formapago = @(Model?.Encabezado?.IdDoc?.FormasPago == null ? 0 : Model?.Encabezado?.IdDoc?.FormasPago.Count());
+    var count_dsctorecargo = @(Model?.DescuentosRecargos == null ? 0 : Model?.DescuentosRecargos.Count());
+
+    </script>
+}
+

@@ -1,0 +1,66 @@
+﻿
+.select2 {
+    max-width: 100%;
+}
+
+.form-group-sm {
+    margin-top: 10px;
+}
+
+.panel .panel-heading {
+    background: #24356b;
+    color: #fff;
+    padding: 6px;
+}
+/*
+.table {
+    border-collapse: collapse !important;
+}
+
+.table thead tr th, 
+.table tbody tr td, 
+.table tfoot tr td {
+    padding: 5px;
+    margin: 0px;
+}*/
+
+.hide_column {
+    display: none;
+}
+
+.form-control-label {
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    border-color: #d2d6de;
+    width: 100%;
+    font-size: 16px;
+    /*font-weight: bold;*/
+}
+
+thead {
+    background: #24356b;
+    color: #fff;
+}
+
+th {
+    text-align: center;
+}
+
+/*.nav-tabs > li.active > a { 
+    cursor: default; 
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    background: #24356b !important;
+    color: #fff !important;
+}*/
+
+/*.modal-dialog.modal-800 {
+    width: 800px;
+    margin: 30px auto;
+}*/
+
+.btn-emisor {
+    padding: 3px 7px;
+    margin-bottom: 5px;
+}

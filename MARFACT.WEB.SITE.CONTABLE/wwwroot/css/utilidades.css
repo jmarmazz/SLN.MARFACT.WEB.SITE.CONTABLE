@@ -1,0 +1,22 @@
+﻿/*==========footer==========*/
+@media screen and (min-width: 768px) {
+    .margin-laptop {
+        margin-top: 7px;
+    }
+}
+
+.input-sm {
+    height: 30px !important;
+    padding: 5px 10px !important;
+    line-height: 1.5 !important;
+    border-radius: 3px !important;
+}
+
+select.input-sm {
+    height: 30px;
+    line-height: 30px
+}
+
+textarea.input-sm, select[multiple].input-sm {
+    height: auto
+}

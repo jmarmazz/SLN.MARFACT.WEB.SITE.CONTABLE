@@ -1,0 +1,33 @@
+﻿@model MARFACT.WEB.SITE.CONTABLE.Models.Facturacion.FacturaModel
+@using MARFACT.DOMAIN.Constants
+@using MF.TOOLS
+@{
+    ViewData["Title"] = "Pago";
+}
+<div class="col-md-12" id="partialPago">
+    <div class="row margin-laptop">
+        <div class="col-md-6  col-sm-5">
+            <label class="form-label">Tipo Pago:<span class="mandatory">*</span></label>
+            <select id="cboTipoPago" asp-for="@Model.Encabezado.IdDoc.TipoPago" class="form-control select2-nosearch" style="width:100%" data-placeholder="Seleccione..." required>
+                <option value=""></option>
+                <option value="">Efectivo</option>   
+                <option value="">Tarjeta Crédito</option> 
+                <option value="">Cheque</option> 
+            </select>
+        </div>
+        <div class="col-md-6 col-sm-5">
+            <label class="form-label">Fecha Limite Pago:</label>
+            <input id="txtFechaLimitePago" type="text" asp-for="@Model.Encabezado.IdDoc.FechaLimitePago" class="form-control input-sm datepicker" disabled placeholder="dd-mm-aaaa" onkeydown="event.preventDefault()" />
+        </div>
+    </div>
+    <div class="row margin-laptop">
+        <div class="col-md-6 col-sm-5">
+            <label class="form-label">Fecha Desde:</label>
+            <input id="txtFechaDesde" type="text" asp-for="@Model.Encabezado.IdDoc.FechaDesde" class="form-control input-sm" placeholder="dd-mm-aaaa" onkeydown="event.preventDefault()"/>
+        </div>
+        <div class="col-md-6 col-sm-5">
+            <label class="form-label">Fecha Hasta:</label>
+            <input id="txtFechaHasta" type="text" asp-for="@Model.Encabezado.IdDoc.FechaHasta" class="form-control input-sm" placeholder="dd-mm-aaaa" onkeydown="event.preventDefault()"/>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@model MARFACT.WEB.SITE.CONTABLE.Models.Facturacion.FacturaModel
+@using MARFACT.DOMAIN.Constants
+@using MF.TOOLS
+ 
+<div class="row margin-laptop">
+    <div class="col-md-6  col-sm-5">
+        <label class="form-label">Tipo Pago:<span class="mandatory" id="spanTipoPago">*</span></label>
+        <select id="cboTipoPago" asp-for="@Model.Encabezado.IdDoc.TipoPago" class="form-control select2bs4-nosearch" style="width:100%" data-placeholder="Seleccione..." required>
+            <option value=""></option>
+            <option value="">Efectivo</option>   
+            <option value="">Tarjeta Crédito</option> 
+            <option value="">Cheque</option> 
+        </select>
+    </div>
+    <div class="col-md-6 col-sm-5">
+        <label class="form-label">Fecha Limite Pago:</label>
+        <input id="txtFechaLimitePago" type="text" asp-for="@Model.Encabezado.IdDoc.FechaLimitePago" class="form-control input-sm datepicker" disabled placeholder="dd-mm-aaaa" onkeydown="event.preventDefault()" />
+    </div>
+</div>
+
+<div class="row margin-laptop">
+    <div class="col-md-6  col-sm-5">
+        <button id="btnNuevoFormaPago" type="button" data-toggle="modal" href="#modalFormaPago" class="btn btn-primary CssOpenModal btn-emisor">
+            <i class="glyphicon glyphicon-plus"></i> Forma Pago
+        </button>
+    </div>
+    <div class="col-md-6 col-sm-5">
+        <div class="pull-right">
+            <label style="padding-right: 5px; vertical-align: middle;" class="form-check-label">Todos</label>
+            <a id="btnEliminarTodoFormaPago" class="tooltip--triangle" title="Eliminar" style="cursor: pointer; padding-right: 12px;"><span class="glyphicon glyphicon-trash" style="font-size:17px;"></span></a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="tblFormaPago" class="table table-striped table-bordered table-sm table-responsive" cellspacing="0" cellpadding="0" width="100%">
+            <thead class="label-primary">
+                <tr>
+                    <th></th>
+                    <th class="col-md-5 text-center">Forma Pago</th>
+                    <th class="col-md-3 text-center">Monto</th>
+                    <th class="col-md-1 text-center"></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div> 
+
+<div class="row margin-laptop">
+    <div class="col-md-4 col-sm-4">
+        <label class="form-label">Tipo Cuenta:</label>
+        <select id="cboTipoCuentaPago" asp-for="@Model.Encabezado.IdDoc.TipoCuentaPago" class="form-control select2bs4-nosearch" style="width:100%" data-placeholder="Seleccione...">
+            <option value=""></option>
+            <option value="">Ahorros</option>   
+            <option value="">Credito</option>   
+        </select>
+    </div>
+    <div class="col-md-4 col-sm-4">
+        <label class="form-label"># Cuenta:</label>
+        <input id="txtNumeroCuentaPago" type="number" asp-for="@Model.Encabezado.IdDoc.NumeroCuentaPago" value="@Model.Encabezado?.IdDoc?.NumeroCuentaPago" class="form-control input-sm" maxlength="28" />
+        
+    </div>
+    <div class="col-md4 col-sm-4">
+        <label class="form-label">Banco:</label>
+        <input id="txtBancoPago" asp-for="@Model.Encabezado.IdDoc.BancoPago" type="text" class="form-control input-sm" maxlength="75" />
+    </div>
+</div>
+<div class="row margin-laptop" id="divFecDesdeHasta">
+    <div class="col-md-6 col-sm-5">
+        <label class="form-label">Fecha Desde:</label>
+        <input id="txtFechaDesde" type="text" asp-for="@Model.Encabezado.IdDoc.FechaDesde" class="form-control input-sm" placeholder="dd-mm-aaaa" onkeydown="event.preventDefault()"/>
+    </div>
+    <div class="col-md-6 col-sm-5">
+        <label class="form-label">Fecha Hasta:</label>
+        <input id="txtFechaHasta" type="text" asp-for="@Model.Encabezado.IdDoc.FechaHasta" class="form-control input-sm" placeholder="dd-mm-aaaa" onkeydown="event.preventDefault()"/>
+    </div>
+</div>

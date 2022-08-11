@@ -18,7 +18,7 @@ namespace MARFACT.QUERY.SQLSERVER.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("data source=localhost\\SQLEXPRESS;initial catalog=DB_CREDITOAUTO;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("data source=localhost\\SQLEXPRESS;initial catalog=DB_MARFACT;Trusted_Connection=True;");
             }
         }
 

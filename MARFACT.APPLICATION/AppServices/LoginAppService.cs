@@ -75,9 +75,9 @@ namespace MARFACT.APPLICATION
             {
                 foreach (var ItemNivelSub in rows)
                 {
-                    if (ItemNivelSub.Pagina != null)
+                    if (ItemNivelSub.UrlPagina != null)
                     {
-                        string MenuHref = "<li><a href='./" + ItemNivelSub.Pagina + "'>" + ItemNivelSub.NombreAbreviado + "</a></li>";
+                        string MenuHref = "<li><a href='./" + ItemNivelSub.UrlPagina + "'>" + ItemNivelSub.NombreAbreviado + "</a></li>";
                         MenuConcat += MenuHref;
                     }
                     else

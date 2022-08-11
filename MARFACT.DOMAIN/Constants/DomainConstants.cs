@@ -5,9 +5,9 @@ namespace MARFACT.DOMAIN.Constants
     {
         public const string COMPONENTE_PORTAL = "MARFACT_Portal";
 
-        public const string SEMILLA_ENCRIPTA = "Gs_Cliente2014";
-        public const string SEMILLA_DOBLE_ENCRIPTA= "@CloudGS2014";
-        public const string ENCRIPTA_KEY = "3m1l10";
+        public const string SEMILLA_ENCRIPTA = "MF_MarMazz2022";
+        public const string SEMILLA_DOBLE_ENCRIPTA= "@CloudMF2022";
+        public const string ENCRIPTA_KEY = "s1sm@rm@zz22";
 
         public const string PARAMETRO_RUTAIMAGENPDF = "RUTA_IMAGEN_PDF";
         public const string ERROREDOC_GENERAL = "E01";

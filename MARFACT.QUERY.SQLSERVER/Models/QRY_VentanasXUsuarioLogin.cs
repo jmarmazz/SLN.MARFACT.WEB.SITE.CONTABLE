@@ -8,7 +8,7 @@ namespace MARFACT.QUERY.SQLSERVER.Models
     {
         internal List<VentanaLoginQueryDto> ConsultarVentanasXUsuarioLogin(short IdUsuario)
         {
-            return VentanaLoginQueryDto.FromSqlRaw("QRY_VentanasXUsuarioLogin @p0,@p1", IdUsuario).ToList();
+            return VentanaLoginQueryDto.FromSqlRaw("QRY_VentanasXUsuarioLogin @p0", IdUsuario).ToList();
         }
     }
 }

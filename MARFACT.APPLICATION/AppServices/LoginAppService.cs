@@ -50,8 +50,8 @@ namespace MARFACT.APPLICATION
             var ConcatMenu = "<li><a href='./Inicio'>Inicio</a></li>";
             if (ventanasDto != null && ventanasDto.Count > 0)
             {
-                var rows = ventanasDto.FindAll(x => x.IdPadre == 1);
-                if (rows.Count == 0) { rows = ventanasDto.FindAll(x => x.IdPadre == 1000); }
+                var rows = ventanasDto.FindAll(x => x.IdPadre == null);
+                if (rows.Count == 0) { rows = ventanasDto.FindAll(x => x.IdPadre == 100); }
                 if (rows != null)
                 {
                     foreach (var ItemNivel1 in rows)

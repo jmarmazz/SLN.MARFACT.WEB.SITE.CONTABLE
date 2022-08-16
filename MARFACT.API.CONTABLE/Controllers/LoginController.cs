@@ -1,4 +1,5 @@
-﻿using MARFACT.APPLICATION;
+﻿using MARFACT.API.DataContracts;
+using MARFACT.APPLICATION;
 using MARFACT.APPLICATION.Interfaces;
 using MARFACT.APPLICATION.Parameters;
 using Microsoft.AspNetCore.Http;
@@ -19,24 +20,16 @@ namespace MARFACT.API.CONTABLE.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string Usuario, string Clave)
+        [Route("Login")]
+        public IActionResult Login(Login login)
         {
             try
             {
-                var loginDto = loginAppService.Login(Usuario, Clave);
+                var loginDto = loginAppService.Login(login.Usuario, login.Clave);
                 if (loginDto == null) throw new Exception(AppParameters.ExcepcionGenerica);
                 if (loginDto.IdUsuario > 0)
                 {
-                    if (loginDto.ForzarCambioClave)
-                    {
-                        //HttpContext.Session.SetString("UsuarioLogin", JsonConvert.SerializeObject(loginDto));
-                        return StatusCode(StatusCodes.Status200OK, "FirstLogin");
-                    }
-                    else
-                    {
-                        //HttpContext.Session.SetString("UsuarioLogin", JsonConvert.SerializeObject(loginDto));
-                        return StatusCode(StatusCodes.Status200OK, "Inicio");
-                    }
+                    return StatusCode(StatusCodes.Status200OK, JsonConvert.SerializeObject(loginDto));
                 }
                 else
                 {

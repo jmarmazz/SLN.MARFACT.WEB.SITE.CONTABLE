@@ -8,6 +8,7 @@ using MARFACT.QUERY.Interfaces.QueryServices;
 using System;
 using System.Collections.Generic;
 using MF.TOOLS;
+using Newtonsoft.Json;
 
 namespace MARFACT.APPLICATION
 {
@@ -33,7 +34,7 @@ namespace MARFACT.APPLICATION
                 {
                     var resultVentana = loginQueryService.ConsultarVentana(loginDto.IdUsuario, ref mensaje);
                     if (resultVentana == null) throw new Exception(mensaje);
-                    loginDto.MenuPersonalizado = GenerarMenuPersonalizado(resultVentana);
+                    loginDto.MenuPersonalizado = JsonConvert.SerializeObject(resultVentana); //GenerarMenuPersonalizado(resultVentana);
                     loginDto.VentanasActivasConcat = GenerarVentanaHabilitadasConcat(resultVentana);
                 }
                 return loginDto;
